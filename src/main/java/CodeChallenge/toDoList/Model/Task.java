@@ -3,11 +3,7 @@ package CodeChallenge.toDoList.Model;
 import java.time.LocalDateTime;
 
 import CodeChallenge.toDoList.Enums.Status;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -24,5 +20,7 @@ public class Task {
     private LocalDateTime ending;
     private String description;
     private Status status;
+    @ManyToOne
+    @JoinColumn(name = "user_id") // Maps the foreign key column in the task table
     private User user;
 }

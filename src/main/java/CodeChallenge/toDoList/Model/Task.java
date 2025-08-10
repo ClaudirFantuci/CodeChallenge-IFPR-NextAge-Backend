@@ -21,6 +21,6 @@ public class Task {
     private String description;
     private Status status;
     @ManyToOne
-    @JoinColumn(name = "user_id") // Maps the foreign key column in the task table
+    @JoinColumn(name = "user_id")
     private User user;
 }

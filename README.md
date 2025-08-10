@@ -1,9 +1,3 @@
-
----
-
-### 📌 README do **Backend** — `CodeChallenge-IFPR-NextAge-Backend` (atualizado)
-
-```markdown
 # To Do List - Backend
 
 Este é o backend do projeto **To Do List**, desenvolvido como parte do desafio do processo seletivo de estágio.  

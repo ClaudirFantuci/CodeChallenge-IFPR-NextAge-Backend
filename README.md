@@ -1,4 +1,4 @@
-# Priority (Backend)
+# To Do List (Backend)
 
 Repositório responsável pela API do sistema **Priority**, desenvolvido com **Spring Boot** e **MySQL** como parte do desafio de estágio *NextAge | IFPR*.
 

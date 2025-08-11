@@ -11,9 +11,9 @@ Projeto em desenvolvimento.
 - [ ] Edição de Tarefas
 - [ ] Marcação de Conclusão
 - [ ] Exclusão de Tarefas
-- [ ] Autenticação de Usuário (Opcional)
-- [ ] Filtros e Ordenação (Opcional)
-- [ ] Outras funcionalidades (descrever)
+- [ ] Autenticação de Usuário 
+- [ ] Filtros e Ordenação
+
 
 ## 🛠 Tecnologias Utilizadas
 - **Backend:** Spring Boot

@@ -15,7 +15,6 @@ import CodeChallenge.toDoList.DTO.ResponseDTO;
 import CodeChallenge.toDoList.Model.User;
 import CodeChallenge.toDoList.Repositories.UserRepository;
 import CodeChallenge.toDoList.infra.Security.TokenService;
-import ch.qos.logback.core.subst.Token;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -27,7 +26,7 @@ public class AuthController {
     private final TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginRequestDTO body) {
+    public ResponseEntity<ResponseDTO> login(@RequestBody LoginRequestDTO body) {
         User user = this.repository.findByEmail(body.email()).orElseThrow(() -> new RuntimeException("User not found"));
         if (passwordEncoder.matches(body.password(), user.getPassword())) {
             String token = this.tokenService.genereteToken(user);
@@ -37,7 +36,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterRequestDTO body) {
+    public ResponseEntity<ResponseDTO> register(@RequestBody RegisterRequestDTO body) {
         Optional<User> user = this.repository.findByEmail(body.email());
         if (user.isEmpty()) {
             User newUser = new User();
@@ -48,7 +47,7 @@ public class AuthController {
             String token = this.tokenService.genereteToken(newUser);
             return ResponseEntity.ok(new ResponseDTO(newUser.getEmail(), token));
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body(new ResponseDTO("Email já em uso", null));
     }
 
 }

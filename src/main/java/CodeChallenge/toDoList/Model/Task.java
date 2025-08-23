@@ -1,26 +1,26 @@
 package CodeChallenge.toDoList.Model;
 
-import java.time.LocalDateTime;
-
-import CodeChallenge.toDoList.Enums.Status;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "task")
+@Table(name = "tasks")
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @NotBlank
+    private Long id;
+
     private String name;
-    private LocalDateTime start;
-    private LocalDateTime ending;
+    private LocalDate start;
+    private LocalDate ending;
+    private String status;
     private String description;
-    private Status status;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+
+    // Relacionamento com o usuário dono da tarefa
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 }

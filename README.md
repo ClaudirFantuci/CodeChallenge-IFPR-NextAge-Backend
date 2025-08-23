@@ -5,7 +5,7 @@ Ele é responsável por fornecer APIs RESTful para gerenciamento de tarefas, int
 
 Projeto em desenvolvimento.
 
-## ✅ Funcionalidades (em desenvolvimento)
+## Funcionalidades (em desenvolvimento)
 - [ ] Criação de Tarefas
 - [ ] Visualização de Tarefas
 - [ ] Edição de Tarefas

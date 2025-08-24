@@ -17,7 +17,6 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findByUsername(String username) {
-        System.out.println("Searching for user with email: " + username);
         return userRepository.findByEmailIgnoreCase(username.toLowerCase())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado: " + username));
     }

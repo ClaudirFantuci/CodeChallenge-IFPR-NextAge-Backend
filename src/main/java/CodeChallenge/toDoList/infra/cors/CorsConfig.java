@@ -1,4 +1,3 @@
-// File: CorsConfig.java
 package CodeChallenge.toDoList.infra.cors;
 
 import org.springframework.context.annotation.Configuration;

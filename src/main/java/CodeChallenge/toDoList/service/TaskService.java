@@ -77,12 +77,9 @@ public class TaskService {
 
     @Transactional
     public void deleteTask(Long id) {
-        User user = getAuthenticatedUser();
-        Task task = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
-        if (!task.getUser().getId().equals(user.getId())) {
-            throw new RuntimeException("Acesso negado!");
+        if (!taskRepository.existsById(id)) {
+            throw new RuntimeException("Task not found with id: " + id);
         }
-        taskRepository.delete(task);
+        taskRepository.deleteById(id);
     }
 }

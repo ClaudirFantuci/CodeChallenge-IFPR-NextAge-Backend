@@ -1,4 +1,3 @@
-// File: SecurityConfig.java
 package CodeChallenge.toDoList.infra.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;

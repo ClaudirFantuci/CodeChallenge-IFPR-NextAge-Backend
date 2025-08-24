@@ -1,4 +1,3 @@
-// File: TokenService.java
 package CodeChallenge.toDoList.infra.Security;
 
 import com.auth0.jwt.JWT;

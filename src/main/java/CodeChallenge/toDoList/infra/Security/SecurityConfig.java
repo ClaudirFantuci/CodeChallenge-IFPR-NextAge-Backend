@@ -1,3 +1,4 @@
+// File: SecurityConfig.java
 package CodeChallenge.toDoList.infra.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/task").authenticated() // Alterado para exigir autenticação
+                        .requestMatchers("/error").permitAll() // Permite acesso ao handler de erros
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();

@@ -1,7 +1,8 @@
 package CodeChallenge.toDoList.service;
 
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import CodeChallenge.toDoList.Model.User;
 import CodeChallenge.toDoList.Repositories.UserRepository;
 
@@ -14,8 +15,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional(readOnly = true)
     public User findByUsername(String username) {
-        return userRepository.findByEmail(username) // supondo que login seja pelo email
+        System.out.println("Searching for user with email: " + username);
+        return userRepository.findByEmailIgnoreCase(username.toLowerCase())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado: " + username));
     }
 }

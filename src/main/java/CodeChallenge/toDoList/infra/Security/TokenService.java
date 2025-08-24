@@ -1,3 +1,4 @@
+// File: TokenService.java
 package CodeChallenge.toDoList.infra.Security;
 
 import com.auth0.jwt.JWT;
@@ -24,23 +25,25 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
-            String token = JWT.create().withIssuer("login-auth-api").withSubject(user.getEmail()).withExpiresAt(generateExpirationDate()).sign(algorithm);
+            String token = JWT.create().withIssuer("login-auth-api").withSubject(user.getEmail())
+                    .withExpiresAt(generateExpirationDate()).sign(algorithm);
             return token;
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Error while authenticating");
         }
     }
 
-    public String validateToken(String token){
+    public String validateToken(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm).withIssuer("login-auth-api").build().verify(token).getSubject();
 
-        }catch (JWTVerificationException exception){
+        } catch (JWTVerificationException exception) {
             return null;
         }
     }
-    private Instant generateExpirationDate(){
+
+    private Instant generateExpirationDate() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 }

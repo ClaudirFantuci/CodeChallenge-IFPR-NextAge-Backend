@@ -1,11 +1,14 @@
 package CodeChallenge.toDoList.Repositories;
 
-import java.util.Optional;
+import CodeChallenge.toDoList.Model.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import CodeChallenge.toDoList.Model.User;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+
     Optional<User> findByEmail(String email);
+
+    Optional<User> findByEmailIgnoreCase(String email);
 }

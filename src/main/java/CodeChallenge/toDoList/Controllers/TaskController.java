@@ -7,7 +7,7 @@ import CodeChallenge.toDoList.Model.Task;
 import CodeChallenge.toDoList.service.TaskService;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/task")
 public class TaskController {
 
     private final TaskService taskService;
@@ -26,6 +26,12 @@ public class TaskController {
     public ResponseEntity<List<Task>> getTasks(@RequestParam(required = false) String status) {
         List<Task> tasks = taskService.getTasks(status);
         return ResponseEntity.ok(tasks);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
+        Task updatedTask = taskService.updateTask(id, taskDetails);
+        return ResponseEntity.ok(updatedTask);
     }
 
     @DeleteMapping("/{id}")

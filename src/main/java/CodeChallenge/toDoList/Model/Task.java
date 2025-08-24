@@ -1,12 +1,14 @@
 package CodeChallenge.toDoList.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "tasks")
+@Table(name = "task")
 public class Task {
 
     @Id
@@ -19,8 +21,8 @@ public class Task {
     private String status;
     private String description;
 
-    // Relacionamento com o usuário dono da tarefa
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 }

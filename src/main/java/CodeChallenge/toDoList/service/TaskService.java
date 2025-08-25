@@ -29,20 +29,16 @@ public class TaskService {
             throw new RuntimeException("Usuário não autenticado");
         }
         String username = auth.getName();
-        System.out.println("Authenticated username: " + username);
         User user = userService.findByUsername(username);
-        System.out.println("Authenticated user ID: " + user.getId());
         return user;
     }
 
     public Task createTask(Task task) {
         try {
             User user = getAuthenticatedUser();
-            System.out.println("Usuário autenticado: " + user.getEmail());
             task.setUser(user);
             return taskRepository.save(task);
         } catch (Exception e) {
-            System.out.println("Erro ao criar tarefa: " + e.getMessage());
             throw e;
         }
     }
@@ -70,16 +66,25 @@ public class TaskService {
             task.setEnding(taskDetails.getEnding());
             return taskRepository.save(task);
         } catch (Exception e) {
-            System.out.println("Erro ao atualizar tarefa: " + e.getMessage());
             throw e;
         }
     }
 
     @Transactional
     public void deleteTask(Long id) {
-        if (!taskRepository.existsById(id)) {
-            throw new RuntimeException("Task not found with id: " + id);
+        User user = getAuthenticatedUser();
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+
+        if (!task.getUser().getId().equals(user.getId())) {
+            throw new RuntimeException("Acesso negado!");
         }
-        taskRepository.deleteById(id);
+
+        user.getTask().remove(task);
+
+        taskRepository.delete(task);
+
+        taskRepository.flush();
     }
+
 }

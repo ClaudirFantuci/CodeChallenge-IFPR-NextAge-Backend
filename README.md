@@ -1,6 +1,6 @@
 # To Do List - Backend
 
-Este é o backend do projeto **To Do List**, desenvolvido como parte do desafio do processo seletivo de estágio.  
+Este é o backend do projeto **To Do List**.  
 Ele é responsável por fornecer APIs RESTful para gerenciamento de tarefas, integrando-se com um banco de dados MySQL.
 
 Projeto em desenvolvimento.
